@@ -1,4 +1,6 @@
 using Allup.DAL;
+using Allup.Interfaces;
+using Allup.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -30,6 +32,7 @@ namespace Allup
             {
                 options.UseSqlServer(Configuration.GetConnectionString("Default"));
             });
+            services.AddScoped<ILayoutService, LayoutServices>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

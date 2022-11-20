@@ -1,7 +1,9 @@
 ﻿
-@{
-    List<Setting> settings = ViewBag.Settings;
 
+@inject ILayoutService layoutservices
+
+@{
+    Dictionary<string, string> settings = await layoutservices.GetSettingAsync();
 }
 
 <!doctype html>
@@ -62,7 +64,7 @@
                 <div class="container-fluid custom-container">
                     <div class="header-nav-wrapper d-flex justify-content-between">
                         <div class="header-static-nav">
-                           @Html.Raw(settings.First(s => s.Key == "Slogan").Value)
+                            @Html.Raw(settings.First(s => s.Key == "Slogan").Value)
                             @*<p>Get FREE Shipping with <span class="text">$35!</span> Code: FREESHIPPING</p>*@
                         </div>
                         <div class="header-menu-nav">

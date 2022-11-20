@@ -1,6 +1,8 @@
 ﻿using Allup.DAL;
 using Allup.Models;
+using Allup.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,13 +17,14 @@ namespace Allup.Controllers
         {
             _context = context;
         }
-
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            List<Setting> settings = _context.Settings.ToList();
-            ViewBag.Settings = settings;
-            return View();
+            HomeVM homeVM = new HomeVM
+            {
+                Sliders = await _context.Sliders.Where(s => s.IsDeleted == false).ToListAsync(),
+                Categories = await _context.Categories.Where(c => c.IsDeleted == false && c.IsMain == true).ToListAsync()
+            };
+            return View(homeVM);
         }
-
     }
 }
