@@ -10,5 +10,8 @@ namespace Allup.ViewModels
     {
         public List<Slider> Sliders { get; set; }
         public List<Category> Categories { get; set; }
+        public IEnumerable<Product> NewArrival { get; set; }
+        public IEnumerable<Product> BestSeller { get; set; }
+        public IEnumerable<Product> Featured { get; set; }
     }
 }

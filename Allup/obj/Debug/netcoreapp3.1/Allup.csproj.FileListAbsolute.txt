@@ -145,3 +145,5 @@ C:\Users\Lenovo\source\repos\Allup\Allup\obj\Debug\netcoreapp3.1\Allup.dll
 C:\Users\Lenovo\source\repos\Allup\Allup\obj\Debug\netcoreapp3.1\Allup.pdb
 C:\Users\Lenovo\source\repos\Allup\Allup\obj\Debug\netcoreapp3.1\Allup.genruntimeconfig.cache
 C:\Users\Lenovo\source\repos\Allup\Allup\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
+C:\Users\Lenovo\source\repos\Allup\Allup\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_TestPartial.cshtml.g.cs
+C:\Users\Lenovo\source\repos\Allup\Allup\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ProductListPartial.cshtml.g.cs
