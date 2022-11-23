@@ -147,3 +147,7 @@ C:\Users\Lenovo\source\repos\Allup\Allup\obj\Debug\netcoreapp3.1\Allup.genruntim
 C:\Users\Lenovo\source\repos\Allup\Allup\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\Lenovo\source\repos\Allup\Allup\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_TestPartial.cshtml.g.cs
 C:\Users\Lenovo\source\repos\Allup\Allup\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ProductListPartial.cshtml.g.cs
+C:\Users\Lenovo\source\repos\Allup\Allup\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\Lenovo\source\repos\Allup\Allup\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\Lenovo\source\repos\Allup\Allup\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+C:\Users\Lenovo\source\repos\Allup\Allup\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_SearchPartial.cshtml.g.cs
