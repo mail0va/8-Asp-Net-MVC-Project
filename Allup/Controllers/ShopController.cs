@@ -1,4 +1,5 @@
 ﻿using Allup.DAL;
+using Allup.Models;
 using Allup.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -36,5 +37,15 @@ namespace Allup.Controllers
             //return Json(products);
             return PartialView("_SearchPartial", products);
         }
+
+        public async Task<IActionResult> DetailModal(int? id)
+        {
+            Product product = await _context.Products
+                .Include(p => p.ProductImages)
+                .FirstOrDefaultAsync(p => p.Id == id);
+
+            return PartialView("_ProductModalPartial", product);
+        }
+
     }
 }

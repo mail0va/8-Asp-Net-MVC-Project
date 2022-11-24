@@ -39,4 +39,16 @@
             $(".searchList").html('');
         }
     })
+
+    //MODAL
+    $(document).on('click', '.productModal', function (e) {
+        e.preventDefault();
+
+        fetch($(this).attr('href'))
+            .then(res => res.text())
+            .then(data => {
+                $('.modal-body').html(data);
+
+            })
+    })
 })
