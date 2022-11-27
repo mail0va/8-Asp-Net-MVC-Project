@@ -35,6 +35,7 @@ namespace Allup
                 options.UseSqlServer(Configuration.GetConnectionString("Default"));
             });
             services.AddScoped<ILayoutService, LayoutServices>();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +48,7 @@ namespace Allup
 
             app.UseRouting();
             app.UseStaticFiles();
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

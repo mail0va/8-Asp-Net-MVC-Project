@@ -15,7 +15,7 @@
                                 <img class="second-image" src="assets/images/product/@product.HoverImage" alt="product">
                             </a>
                             <ul class="product-meta">
-                                <li><a href="#"><i class="icon ion-bag"></i></a></li>
+                                <li><a asp-controller="basket" asp-action="addtobasket" asp-route-id="@product.Id"><i class="icon ion-bag"></i></a></li>
                                 <li><a href="#"><i class="icon ion-android-favorite-outline"></i></a></li>
                                 <li><a href="#"><i class="icon ion-android-options"></i></a></li>
                                 <li><a class="productModalBtn" data-toggle="modal" data-target="#productQuickModal" asp-controller="shop" action="DetailModal" asp-route-id="@product.Id"><i class="icon ion-android-open"></i></a></li>

@@ -1,4 +1,32 @@
 ﻿$(document).ready(() => {
+
+
+    $(".addtobasket").click(function (e) {
+        e.preventDefault();
+
+        let url = $(this).attr("href");
+
+        fetch(url)
+            .then(res => {
+                if (res.ok) {
+                 alert("Add olundu !!!");
+
+                }
+                else if (res.status == 404) {
+                    alert(res.text());
+                }
+                else if (res.status==400) {
+                    alert(res.text());
+                }
+            })
+    
+    })
+
+
+
+
+
+
     $(".searchBtn").click(() => {
         let searchInput = $(" .searchInput").val();
         let searchCategory = $(" searchCategory option: selected").val();
@@ -50,9 +78,9 @@
             .then(res => {
                 return res.text();
             })
-
             .then(data => {
                 $('.modal .modal-dialog .modal-content .modal-body').html(data);
+                $(".modal").modal("show");
 
                 $('.quick-view-image').slick({
                     slidesToShow: 1,
@@ -73,7 +101,6 @@
                     focusOnSelect: true,
                     speed: 400,
                 });
-                $(".modal").modal("show")
             })
     })
 })
