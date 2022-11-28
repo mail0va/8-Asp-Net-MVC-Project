@@ -29,5 +29,27 @@ namespace Allup.Controllers
             };
             return View(homeVM);
         }
+
+        //public async Task<IActionResult> Setcookie()
+        //{
+        //    HttpContext.Response.Cookies.Append("P228", "My First Cookie");
+
+        //    return RedirectToAction(nameof(Index));
+        //}
+        //public async Task<IActionResult> Getcookie()
+        //{
+        //    return Content(HttpContext.Request.Cookies["P228"]);
+        //}
+
+        //public async Task<IActionResult> SetSession()
+        //{
+        //    HttpContext.Session.SetString("P228", "My First Session");
+        //    return RedirectToAction(nameof(Index));
+        //}
+        //public async Task<IActionResult> GetSession()
+        //{
+        //    return Content(HttpContext.Session.GetString("My First Session"));
+        //}
+
     }
 }
