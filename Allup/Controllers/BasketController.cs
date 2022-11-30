@@ -93,15 +93,37 @@ namespace Allup.Controllers
         {
             if (id == null) return BadRequest("Id null ola bilmez !!!");
 
-            string basket = HttpContext.Request.Cookies["basket"];
+            if (!await _context.Products.AnyAsync(p => p.Id == id)) return NotFound();
 
-            List<BasketVM> basketVMs = JsonConvert.DeserializeObject<List<BasketVM>>(basket);
+            string cookieBasket = HttpContext.Request.Cookies["basket"];
 
-            if (basketVMs.Exists(b => b.Id == id))
+            List<BasketVM> basketVMs = null;
+            if (cookieBasket != null)
             {
-                basketVMs.Remove(basketVMs.Find(b => b.Id == id));
-            }
+                basketVMs = JsonConvert.DeserializeObject<List<BasketVM>>(cookieBasket);
 
+                if (!basketVMs.Any(b => b.Id == id))
+                {
+                    return NotFound();
+                }
+                BasketVM basketVM = basketVMs.FirstOrDefault(b => b.Id == id);
+                basketVMs.Remove(basketVM);
+            }
+            else
+            {
+                basketVMs = new List<BasketVM>();
+            }
+            cookieBasket = JsonConvert.SerializeObject(basketVMs);
+            HttpContext.Response.Cookies.Append("basket", cookieBasket);
+            foreach (BasketVM basketVM in basketVMs)
+            {
+                Product product = await _context.Products.FirstOrDefaultAsync(p => p.Id == basketVM.Id && p.IsDeleted == false);
+                //Product product = await _context.Products.FirstOrDefaultAsync(p => p.Id == basketVM.Id);
+                basketVM.Title = product.Title;
+                basketVM.Image = product.MainImage;
+                basketVM.ExTax = product.ExTax;
+                basketVM.Price = product.DiscountPrice > 0 ? product.DiscountPrice : product.Price;
+            }
             return PartialView("_BasketCartPartial", basketVMs);
         }
     }
