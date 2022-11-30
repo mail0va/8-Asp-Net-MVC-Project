@@ -11,11 +11,15 @@
                     <div class="single-product mt-30">
                         <div class="product-image">
                             <a href="single-product.html">
-                                <img class="first-image" src="assets/images/product/@product.MainImage" alt="product">
-                                <img class="second-image" src="assets/images/product/@product.HoverImage" alt="product">
+                                <img class="first-image" src="~/assets/images/product/@product.MainImage" alt="product">
+                                <img class="second-image" src="~/assets/images/product/@product.HoverImage" alt="product">
                             </a>
                             <ul class="product-meta">
-                                <li><a asp-controller="basket" asp-action="addtobasket" asp-route-id="@product.Id"><i class="icon ion-bag"></i></a></li>
+                                <li>
+                                    <a class="addtobasket" asp-controller="basket" asp-action="addtobasket" asp-route-id="@product.Id">
+                                        <i class="icon ion-bag"></i>
+                                    </a>
+                                </li>
                                 <li><a href="#"><i class="icon ion-android-favorite-outline"></i></a></li>
                                 <li><a href="#"><i class="icon ion-android-options"></i></a></li>
                                 <li><a class="productModalBtn" data-toggle="modal" data-target="#productQuickModal" asp-controller="shop" action="DetailModal" asp-route-id="@product.Id"><i class="icon ion-android-open"></i></a></li>

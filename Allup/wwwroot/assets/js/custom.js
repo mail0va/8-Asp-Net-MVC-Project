@@ -7,21 +7,25 @@
         let url = $(this).attr("href");
 
         fetch(url)
-            .then(res => {
-                if (res.ok) {
-                 alert("Add olundu !!!");
+            .then(res => res.text())
+            .then(data => {
+                $('.header-cart').html(data);
 
-                }
-                else if (res.status == 404) {
-                    alert(res.text());
-                }
-                else if (res.status==400) {
-                    alert(res.text());
-                }
             })
-    
     })
 
+    $('.product-close').click(function (e) {
+        e.preventDefault();
+
+        let url = $(this).attr('href');
+
+        fetch(url)
+            .then(res => res.text())
+            .then(data => {
+            $('.header-cart').html(data);
+             //$('.mini-cart').html(data);
+        })
+    })
 
 
 

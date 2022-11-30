@@ -25,16 +25,11 @@ namespace Allup.Controllers
 
         public async Task<IActionResult> AddToBasket(int? id)
         {
-            if (id == null)
-            {
-                return BadRequest("Id null ola bilmez !!!");
-            }
+            if (id == null) return BadRequest("Id null ola bilmez !!!");
+
             //Product product = await _context.Products.FirstOrDefaultAsync(p => p.IsDeleted == false && p.Id == id);
 
-            if (!await _context.Products.AnyAsync(p => p.IsDeleted == false && p.Id == id))
-            {
-                return NotFound("Id yalnisdir !");
-            }
+            if (!await _context.Products.AnyAsync(p => p.IsDeleted == false && p.Id == id)) return NotFound("Id yalnisdir !");
 
             string basket = HttpContext.Request.Cookies["basket"];
             List<BasketVM> products = null;
@@ -72,7 +67,17 @@ namespace Allup.Controllers
             basket = JsonConvert.SerializeObject(products);
             HttpContext.Response.Cookies.Append("basket", basket);
 
-            return RedirectToAction("Index", "Home");
+            foreach (BasketVM basketVM in products)
+            {
+                Product product = await _context.Products.FirstOrDefaultAsync(p => p.Id == basketVM.Id && p.IsDeleted == false);
+
+                basketVM.Title = product.Title;
+                basketVM.Image = product.MainImage;
+                basketVM.ExTax = product.ExTax;
+                basketVM.Price = product.DiscountPrice > 0 ? product.DiscountPrice : product.Price;
+            }
+
+            return PartialView("_BasketCartPartial", products);
         }
 
         public IActionResult GetFromBasket()
@@ -82,6 +87,22 @@ namespace Allup.Controllers
             List<BasketVM> products = JsonConvert.DeserializeObject<List<BasketVM>>(basket);
 
             return Json(products);
+        }
+
+        public async Task<IActionResult> DeleteFromBasket(int? id)
+        {
+            if (id == null) return BadRequest("Id null ola bilmez !!!");
+
+            string basket = HttpContext.Request.Cookies["basket"];
+
+            List<BasketVM> basketVMs = JsonConvert.DeserializeObject<List<BasketVM>>(basket);
+
+            if (basketVMs.Exists(b => b.Id == id))
+            {
+                basketVMs.Remove(basketVMs.Find(b => b.Id == id));
+            }
+
+            return PartialView("_BasketCartPartial", basketVMs);
         }
     }
 }

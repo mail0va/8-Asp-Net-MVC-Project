@@ -1,4 +1,5 @@
 ﻿using Allup.Models;
+using Allup.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,6 @@ namespace Allup.Interfaces
     {
         Task<Dictionary<string, string>> GetSettingAsync();
         Task<IEnumerable<Category>> GetCategoriesAsync();
+        Task<IEnumerable<BasketVM>> GetBasketAsync();
     }
 }
